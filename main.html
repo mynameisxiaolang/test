@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>扫码入校</title>
+    <style>
+        #clock{
+           
+            border-radius: 2px;
+            margin: 2px auto;
+            font-size: 48px;
+            color: #FF0000;
+            padding: 40px;
+        }   
+    </style>
+</head>
+ 
+<body>
+<nobr>
+    <h1 class="textCenter">预计离校时间：</h1>
+    <h2>2021年04月18日 10:00:00</h2>
+</nobr>
+<h1>预计返校时间：</h1>
+<h2>2021年04月18日 22:50:00</h2>
+<h1>健康码状态：</h1>
+<h2>绿码</h2>
+<h3 id="date"></h3>
+<h4 id="clock"></h4>
+<img src="http://www.wfgx.gov.cn/gxmt/jrgx/20200428/04_04_14058.jpg">
+</body>
+
+
+<script>
+ 
+	var d = new Date();
+	//传入的时间初始值，以对象的方式，可以在传参的过程中改变参数的值
+	var c = {a:d}
+    var e = {a:d}
+	//页面初始化时获取当前系统时间
+    setTime(c);
+    setTime(e);
+    var temp;
+    var temp1;
+	//每隔一秒，再放置一次最新的时间
+	temp = setInterval("setTime(c)", 1000);
+	temp1 = setInterval("setDate(e)", 1000);
+	//返回系统当前时间
+ //    function returnTime() {
+		
+	// 	var d = new Date();
+	// 	c.a = d;
+	// }
+ 
+    //设置时间，定时器执行的方法
+    function setDate(o) {
+        o.a = new Date(o.a);
+        document.getElementById("date").innerHTML =
+           (o.a.getMonth() + 1) + "月" + o.a.getDate() + "日"
+    }
+
+    function setTime(o) {
+		o.a = new Date(o.a);
+        document.getElementById("clock").innerHTML =
+           addZero(o.a.getHours()) + ":" + addZero(o.a.getMinutes()) + ":" + addZero(o.a.getSeconds());
+			o.a = new Date(o.a.getTime()+1000);	
+    }
+ 
+    //时间格式补0
+    function addZero(d) {
+		
+        if (d < 10) {
+            return "0" + d;
+        } else {
+            return d;
+        }
+    }
+ 
+    //修改时间且大于当前时间
+    // function changeTime() {
+        
+    //     var clockValue = document.getElementById("clock").innerHTML;
+    //     var clock = new Date(Date.parse(clockValue));
+ 
+    //     var updateTimeValue = document.getElementById("updateTime").value;
+    //     var updateTime = new Date(Date.parse(updateTimeValue));
+ 
+    //     if (updateTimeValue) {
+    //         if (updateTime - clock >= 0) {
+    //             //执行修改操作
+				// c.a = updateTime;  
+    //         } else {
+    //             alert("修改时间要大于当前时间");
+    //         }
+    //     } else {
+    //         alert("请先选择要修改的时间");
+    //     }
+    // }
+</script>
+ 
+<style>
+    textCenter{
+    text-align:center;
+    }
+    h1{
+    font-style: italic;
+    font-weight: bold;
+    }
+    h2{
+    font-style: normal;
+    font-weight: inherit;
+    }
+    h3{
+    font-style: oblique;
+    font-weight: lighter;
+    }
+    h4{
+    font-style: inherit;
+    font-weight: initial;
+    }
+</style>
+
+</html>
